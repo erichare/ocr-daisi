@@ -4,7 +4,11 @@ import tensorflow as tf
 
 from PIL import Image
 
-def annotate_image():
+# keras-ocr will automatically download pretrained
+# weights for the detector and recognizer.
+pipeline = keras_ocr.pipeline.Pipeline()
+
+def annotate_image(image_url="https://upload.wikimedia.org/wikipedia/commons/b/bd/Army_Reserves_Recruitment_Banner_MOD_45156284.jpg"):
 
     def fig2img(fig):
         """Convert a Matplotlib figure to a PIL Image and return it"""
@@ -15,12 +19,8 @@ def annotate_image():
         img = Image.open(buf)
         return img
 
-    # keras-ocr will automatically download pretrained
-    # weights for the detector and recognizer.
-    pipeline = keras_ocr.pipeline.Pipeline()
-
     # Get a set of three example images
-    image = keras_ocr.tools.read('https://upload.wikimedia.org/wikipedia/commons/b/bd/Army_Reserves_Recruitment_Banner_MOD_45156284.jpg')
+    image = keras_ocr.tools.read(image_url)
 
     # Each list of predictions in prediction_groups is a list of
     # (word, box) tuples.
