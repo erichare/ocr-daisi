@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import keras_ocr
+import tensorflow as tf
 
 from PIL import Image
 
@@ -28,5 +29,5 @@ def annotate_image():
 
     # Plot the predictions
     keras_ocr.tools.drawAnnotations(image=image, predictions=prediction_groups[0])
-    
+
     return fig2img(fig)
