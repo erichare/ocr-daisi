@@ -39,6 +39,15 @@ def annotate_image(image: np.ndarray=None):
         image = Image.open("daisi.jpeg")
         image.load()
 
+    # If we passed in a Numpy Array, convert to image
+    if type(image) == np.ndarray:
+        image = Image.fromarray(image)
+
+    try:
+        image = Image.open(image)
+    except Exception as _:
+        pass
+
     img_byte_arr = io.BytesIO()
     image.save(img_byte_arr, format='PNG')
     img_byte_arr = img_byte_arr.getvalue()
