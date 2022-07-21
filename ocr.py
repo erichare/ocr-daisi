@@ -25,9 +25,9 @@ def annotate_image():
     # Each list of predictions in prediction_groups is a list of
     # (word, box) tuples.
     prediction_groups = pipeline.recognize([image])
-    fig = plt.Figure()
+    fig, ax = plt.subplots()
 
     # Plot the predictions
-    keras_ocr.tools.drawAnnotations(image=image, predictions=prediction_groups[0])
+    keras_ocr.tools.drawAnnotations(image=image, predictions=prediction_groups[0], ax=ax)
 
     return fig2img(fig)
